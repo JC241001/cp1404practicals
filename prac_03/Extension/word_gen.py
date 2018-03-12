@@ -10,17 +10,14 @@ import random
 VOWELS = "aeiou"
 CONSONANTS = "bcdfghjklmnpqrstvwxyz"
 
-print("Enter your word format with letters or wildcards.")
-word_format = input("Wildcards are: # for consonants, % for vowels and * for either: ")
+
+word_format = input("Enter your word format with c for consonants and v for vowels: ")
 word = ""
 for kind in word_format:
-    if kind == "#":
+    if kind == "c":
         word += random.choice(CONSONANTS)
-    elif kind == "%":
-        word += random.choice(VOWELS)
-    elif kind == "*":
-        word += random.choice(CONSONANTS + VOWELS)
     else:
-        word += kind
+        word += random.choice(VOWELS)
+
 
 print(word)
