@@ -10,7 +10,7 @@ Q - Quit"""
 
 def main():
     print(MENU)
-    choice = obtain_input()
+    choice = get_input()
     while choice != "Q":
         if choice == "C":
             process_celsius_to_fahrenheit()
@@ -19,7 +19,7 @@ def main():
         else:
             print("Invalid option")         # Redundant
         print(MENU)
-        choice = obtain_input()
+        choice = get_input()
     print("Thank you.")
 
 
@@ -47,14 +47,13 @@ def process_celsius_to_fahrenheit():
     print("Result: {:.2f} F".format(fahrenheit))
 
 
-def obtain_input():
-    valid_input = ["C", "F", "Q"]
-    users_choice = input(">>> ").upper()
-    while users_choice not in valid_input:
-        print("Invalid Input")
-        print(MENU)
-        users_choice = input(">>> ").upper()
-    return users_choice
+def get_input():
+    valid_inputs = ["C", "F", "Q"]
+    user_choice = input(">>> ").upper()
+    while user_choice not in valid_inputs:
+        print("Invalid Input\n" + MENU)
+        user_choice = input(">>> ").upper()
+    return user_choice
 
 
 if __name__ == '__main__':
