@@ -22,21 +22,27 @@ def main():
         score_strings = score_line.strip().split(",")
         score_numbers = [int(value) for value in score_strings]
         score_values.append(score_numbers)
-    # print(score_values)
+    print(score_values)
     scores_file.close()
-    for i in range(len(subjects)):
-        print(subjects[i], "Scores:")
-        subject_scores = [subject_score for subject_score in score_values[i]]
-        [print(score) for score in subject_scores]
-        print("Max:", max(subject_scores))
-        print("Min:", min(subject_scores))
-        print("Average:", sum(subject_scores)/len(subject_scores))
+
+    [print("{} Scores:".format(subject), end='\t\t') for subject in subjects]
+    print()
+
+    for j in range(10):
+        for i in range(len(score_values[0])):
+            print("{}".format(score_values[j][i]), end='\t\t\t\t\t')
+        print()
 
 
-#        for score in score_values[i]:
-#            print(score)
-#       print("Max:", max(score_values[i]))
-#        print()
+
+    # for i in range(len(subjects)):
+    #     subject_scores = [subject_score for subject_score in score_values[i]]
+    #     #[print(score) for score in subject_scores]
+    #     print("Max:", max(subject_scores))
+    #     print("Min:", min(subject_scores))
+    #     print("Average:", sum(subject_scores)/len(subject_scores))
+
+
 
 
 main()
