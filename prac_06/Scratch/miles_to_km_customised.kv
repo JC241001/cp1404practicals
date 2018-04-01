@@ -1,0 +1,38 @@
+<Label>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    color: 0, 0, 0.7, 1
+
+<Button>:
+    color: (0,0,0,1)
+
+
+BoxLayout:
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        TextInput:
+            id: input_number
+            text: '34'
+            font_size: 48
+            multiline: False
+            on_text_validate: app.convert_miles_to_km()
+        BoxLayout:
+            orientation: 'vertical'
+            Button:
+                text: 'Up'
+                on_press: app.handle_increment(1)
+            Button:
+                text: 'Down'
+                on_press: app.handle_increment(-1)
+    #Button:
+    #    text: 'Convert miles to km'
+    #   on_press: app.convert_miles_to_km()
+    Label:
+        id: output_label
+        text: 'Enter number of miles and use buttons'
+        color: (0,0,0,1)
