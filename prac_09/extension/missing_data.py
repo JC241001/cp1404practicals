@@ -2,7 +2,7 @@
 CP1404/CP5632 Practical
 Extension - Check for missing files
 """
-import shutil
+# import shutil
 import os
 
 
