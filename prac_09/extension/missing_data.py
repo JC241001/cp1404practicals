@@ -1,6 +1,6 @@
 """
 CP1404/CP5632 Practical
-Sorting files in os version 2
+Extension - Check for missing files
 """
 import shutil
 import os
@@ -10,6 +10,21 @@ def main():
     """Demo file renaming with the os module."""
     print("Current directory is", os.getcwd())
 
+
+    file_list = os.listdir('.')
+
+    for file in file_list:
+        char_list = []
+        with open(file) as temp_file:
+            for count in range(5):
+                char_list.append(temp_file.readline(2))
+                temp_file.readline()                    # Move cursor to start of next line
+
+        if '.i' not in char_list:
+            print("{} is missing copyright info".format(file))
+
+
+    """
     # change to desired directory
     os.chdir('FilesToSortV2')
 
@@ -35,7 +50,7 @@ def main():
 
         shutil.move(file, dir_name_dict.get(file_extension) + '/' + file)
 
-
+    """
     for dir_name, subdir_list, file_list in os.walk('.'):
         print("In", dir_name)
         print("\tcontains subdirectories:", subdir_list)
