@@ -52,10 +52,18 @@ def get_fixed_filename(filename):
     # First, replace the spaces and .TXT (the easy part)
     filename = filename.replace(" ", "_").replace(".TXT", ".txt")
 
+    # Clean up rest of string
     new_name = ""
-    # TODO: step-by-step, consider the problem cases and solve them
+    for index, char in enumerate(filename):
+        prev = index - 1
+        if index == 0 or filename[prev] == '_' or filename[prev] == '(':
+            new_name = new_name + char.upper()
+        elif (char =='(' and filename[prev] != '_') or (char.isupper() and filename[prev] != '_' and filename[
+            prev] != '('):
+            new_name = new_name + '_' + char
+        else:
+            new_name = new_name + char
 
     return new_name
-
 
 main()
