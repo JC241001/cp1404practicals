@@ -11,19 +11,31 @@ def main():
     print("Current directory is", os.getcwd())
 
     # change to desired directory
-    os.chdir('Lyrics/Christmas')
-    # print a list of all files (test)
-    print(os.listdir('.'))
+    os.chdir('Lyrics')
+    for dir_name, subdir_list, file_list in os.walk('.'):
+        if dir_name == '.':
+            continue
+        os.chdir(dir_name)
 
-    # make a new directory
-    # os.mkdir('temp')
+        # make a new directory
+        try:
+            os.mkdir('temp')
+        except FileExistsError:
+            continue
 
-    # loop through each file in the (original) directory
-    for filename in os.listdir('.'):
-        # ignore directories, just process files
-        if not os.path.isdir(filename):
-            new_name = get_fixed_filename(filename)
-            print(new_name)
+        # loop through each file in the (original) directory
+        for filename in os.listdir('.'):
+            # ignore directories, just process files
+            if not os.path.isdir(filename):
+                new_name = get_fixed_filename(filename)
+                os.rename(filename, 'temp/' + new_name)
+
+        print(os.getcwd())
+        os.chdir('..')
+
+    # Repeat testing
+    if os.getcwd() != 'Lyrics':
+        os.chdir('..')
 
             # NOTE: These options won't just work...
             # they show you ways of renaming and moving files,
@@ -40,11 +52,11 @@ def main():
 
             # Processing subdirectories using os.walk()
 
-            # os.chdir('..')  # .. means "up" one directory
-            # for dir_name, subdir_list, file_list in os.walk('.'):
-            #     print("In", dir_name)
-            #     print("\tcontains subdirectories:", subdir_list)
-            #     print("\tand files:", file_list)
+    # os.chdir('..')  # .. means "up" one directory
+    for dir_name, subdir_list, file_list in os.walk('.'):
+        print("In", dir_name)
+        print("\tcontains subdirectories:", subdir_list)
+        print("\tand files:", file_list)
 
 
 def get_fixed_filename(filename):
