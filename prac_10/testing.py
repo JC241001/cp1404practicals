@@ -48,13 +48,17 @@ def run_tests():
     # Note that Car's __init__ function sets the fuel in one of two ways:
     # using the value passed in or the default
     # You should test both of these
-    test_car = Car(fuel=10)
+    test_car_1 = Car(fuel=10)
+    assert test_car_1.fuel == 10, "Car does not set fuel correctly"
+
+    test_car_2 = Car()
+    assert test_car_2.fuel == 0, "Car does not set fuel correctly"
 
 
 run_tests()
 
 # TODO: 3. Uncomment the following line and run the doctests
-# doctest.testmod()
+doctest.testmod()
 
 # TODO: 4. Fix the failing is_long_word function
 # (don't change the tests, but the function!)
@@ -67,3 +71,18 @@ run_tests()
 # 'It is an ex parrot.' -> 'It is an ex parrot.'
 # and one more you decide (that's valid!)
 # then write the body of the function so that the tests pass
+
+
+def format_sentence(phrase):
+    """formats the phrase into a sentence
+    >>> format_sentence('hello')
+    'Hello.'
+    >>> format_sentence('It is an ex parrot.')
+    'It is an ex parrot.'
+    >>> format_sentence('a mountain of Nutella makes me happy')
+    'A mountain of Nutella makes me happy.'
+    """
+    sentence = phrase[0].upper() + phrase[1:]
+    if sentence[-1] != '.':
+        sentence += '.'
+    return sentence

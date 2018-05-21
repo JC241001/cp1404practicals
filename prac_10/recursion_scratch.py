@@ -5,10 +5,11 @@ Recursion from scratch
 
 
 def pyramid_blocks_loop(rows):
-    sum = 0
-    for i in range(1, rows+1):
-        sum = sum + i
-    return sum
+    """Calculate number of blocks using loop"""
+    sum_blocks = 0
+    for index in range(1, rows+1):
+        sum_blocks = sum_blocks + index
+    return sum_blocks
 
 
 print('LOOPING')
@@ -18,6 +19,7 @@ print()
 
 
 def pyramid_blocks_recursion(rows):
+    """Calculate number of blocks using recursion"""
     # Base Case
     if rows == 0:
         return 0
