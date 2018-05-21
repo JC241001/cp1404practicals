@@ -4,16 +4,24 @@ Wikipedia exercise
 """
 
 import wikipedia
+import warnings
 
 
 print('Welcome to the Wikipedia interaction extravaganza')
+warnings.filterwarnings("ignore")
 
 search_phrase = input("Enter search phrase: ")
 while search_phrase != '':
     try:
-        print('SUMMARY: {}\n'.format(wikipedia.summary(search_phrase, "html.parser", "markup_type")))
+        handle = wikipedia.page(search_phrase)
+        print('TITLE: {}'.format(handle.title))
+        print('SUMMARY: {}\n'.format(wikipedia.summary(search_phrase)))
+        print('URL: {}'.format(handle.url))
     except wikipedia.exceptions.DisambiguationError as e:
+        handle = wikipedia.page(e.options[0])
+        print('TITLE: {}'.format(handle.title))
         print('SUMMARY (suggested): {}\n'.format(wikipedia.summary(e.options[0])))
+        print('URL: {}'.format(handle.url))
     except wikipedia.exceptions.PageError as f:
         print("{} does not match any pages\n".format(search_phrase))
     search_phrase = input("Enter search phrase: ")
@@ -36,4 +44,3 @@ while search_phrase != '':
 # print()
 #
 # print(wikipedia.summary('GitHub'))
-
